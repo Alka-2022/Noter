@@ -29,14 +29,21 @@ app.get('/',(req,res)=>{
     res.send('hello there')
 })
 
-app.get('/notes', (req, res) => {
-    res.render('new.ejs')
+app.get('/notes',async (req,res)=>{
+    const note= await notes.find();
+    console.log(note)
+    res.render('show.ejs',{note})
+})
+
+app.get('/notes/new', async (req, res) => {
+    const note= await notes.find();
+    res.render('new.ejs',{note})
 })
 
 app.post('/notes', async (req, res)=>{
         const n = new notes(req.body);
         await n.save();
-        res.redirect('/');
+        res.redirect('/notes');
 
 })
 
