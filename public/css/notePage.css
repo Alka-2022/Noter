@@ -1,0 +1,39 @@
+.holder{
+    display:flex;
+    
+}
+.left-display{
+    height:100vh;
+    width:30vw;
+    background-color:rgba(238, 234, 234,0.2);
+    margin-right:15px;
+    margin-left:10px;
+    margin-top:15px;
+}
+
+.right-display{
+    height:100vh;
+    width:60vw;
+    margin-left:10px;
+    margin-top:20px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+
+}
+
+ol{
+    margin:10px;
+}
+li{
+    margin-top:30px;
+}
+
+button{
+    margin-top:20px;
+}
+
+#name{
+    width:60vw;
+    margin-bottom: 20px;
+}
