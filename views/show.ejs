@@ -31,6 +31,18 @@
           </div>
         </div>
       </nav>
+      <%if(success!=''){%>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%=success%>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <%}%>
+        <%if(error!=''){%>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%=error%>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <%}%>
     <section class="">
         <div class="container my-12 mx-auto px-4 md:px-12">
             <div class="flex flex-wrap">
