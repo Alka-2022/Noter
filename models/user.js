@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose=require('passport-local-mongoose');
 const Schema=mongoose.Schema;
+const notes=require('./notes');
 
 const UserSchema=new Schema({
     email:{
         type:String,
         required:true,
         unique:true
-    }
+    },
+    notes:[{
+        type:Schema.Types.ObjectId,
+        ref:'notes'
+    }]
 })
 
 UserSchema.plugin(passportLocalMongoose);

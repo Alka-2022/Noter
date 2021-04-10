@@ -109,7 +109,7 @@ app.post('/notes', async (req, res)=>{
 })
 
 app.all('*',(req,res)=>{
-    res.send('sorry amigo')
+    res.render('error.ejs')
 })
 
 app.listen('5000',() => {
