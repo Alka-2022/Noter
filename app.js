@@ -68,7 +68,7 @@ app.post('/register',async (req, res)=>{
     const {email,username,password} = req.body;
     const user=new User({email,username})
     const registeredUser=await User.register(user,password)
-    console.log(registeredUser)
+    // console.log(registeredUser)
     req.flash('success','you are successfully registered')
     res.redirect('/login')
     }
@@ -88,7 +88,10 @@ app.post('/login',passport.authenticate('local', { failureFlash:true, failureRed
 })
 
 app.get('/notes',async (req,res)=>{
-    const note= await notes.find();
+    // console.log(req.user)
+    const id= req.user._id;
+    const note= await User.findById(id).populate('notes');
+    // console.log(note)
     res.render('show.ejs',{note})
 })
 
@@ -97,13 +100,19 @@ app.get('/notes/new', async (req, res) => {
         req.flash('error','you must be signed in to make notes')
         return res.redirect('/login')
     }
-    const note= await notes.find();
+    const u=req.user._id
+    const note= await User.findById(u).populate('notes')
+    console.log(note)
     res.render('new.ejs',{note})
 })
 
 app.post('/notes', async (req, res)=>{
+        const userId= req.user._id;
+        const user=await User.findById(userId)
         const n = new notes(req.body);
+        user.notes.push(n);
         await n.save();
+        await user.save();
         res.redirect('/notes');
 
 })
