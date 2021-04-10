@@ -26,12 +26,11 @@ app.use(express.urlencoded({extended:true}));
 
 
 app.get('/',(req,res)=>{
-    res.send('hello there')
+    res.sendFile('index.html')
 })
 
 app.get('/notes',async (req,res)=>{
     const note= await notes.find();
-    console.log(note)
     res.render('show.ejs',{note})
 })
 
